@@ -43,15 +43,7 @@ export class Context {
     const payload = this.payload
     return {
       ...this.repo,
-      number: (
-        (payload as Webhooks.WebhookPayloadIssues).issue ||
-        (payload as Webhooks.WebhookPayloadIssueComment).issue ||
-        (payload as Webhooks.WebhookPayloadPullRequest).pull_request ||
-        (payload as Webhooks.WebhookPayloadPullRequestReview).pull_request ||
-        (payload as Webhooks.WebhookPayloadPullRequestReviewComment)
-          .pull_request ||
-        payload
-      ).number
+      number: (payload.issue || payload.pull_request || payload).number
     }
   }
 
